@@ -16,6 +16,11 @@ def additem():
     session.add_item(NewToDoItem)
     return render_template('index.html', items=session.get_items())
 
+@app.route('/items/<id>/complete')
+def complete_item(id):
+    session.complete_item(id)
+    return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run()

@@ -47,7 +47,9 @@
             <td>{{item['title']}}</td>
             <td>{{item['status']}}</td>
             <td>
-              <button type="submit" class="btn btn-warning" id="{{item['id']}}">Mark as Complete</button>
+              {% if item.status != 'Completed' %}
+                <a href="{{ url_for('complete_item', id=item.id) }}" class="btn btn-warning">Mark as Complete</a>
+              {% endif %}
             </td>
           </tr>
           {% endfor %}
