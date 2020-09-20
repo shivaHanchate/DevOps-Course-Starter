@@ -31,6 +31,12 @@ def move_Card_InProgress_Done(id):
     return response
 
 
+def move_Card_Done_Todo(id):
+    endpoint = f"https://api.trello.com/1/cards/{id}/idList?value={toDoListId}"
+    response = requests.put(endpoint, params={"key": api_key, "token": token}).json()
+    return response
+
+
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -52,6 +58,12 @@ def move_item_to_inprogress(id):
 @app.route('/items/<id>/done')
 def move_item_to_done(id):
     move_Card_InProgress_Done(id)
+    return redirect(url_for('index'))
+
+
+@app.route('/items/<id>/todo')
+def move_item_todo(id):
+    move_Card_Done_Todo(id)
     return redirect(url_for('index'))
 
 
