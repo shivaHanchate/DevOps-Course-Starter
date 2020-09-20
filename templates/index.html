@@ -28,13 +28,12 @@
 
     <br>
     <div class="card">
-      <div class="card-header" align="center">TO DO List</div>
+      <div class="card-header" align="center">To Do List</div>
       <div class="card-body">
         <table class="table table-bordered table-hover">
           <caption id="tcaption" style="color:#005B82"></caption>
           <thead class="thead-light">
           <tr>
-            <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
@@ -43,12 +42,23 @@
           <tbody>
           {% for item in items %}
           <tr>
-            <th scope="row">{{item['id']}}</th>
-            <td>{{item['title']}}</td>
-            <td>{{item['status']}}</td>
+            <td>{{item['name']}}</td>
             <td>
-              {% if item.status != 'Completed' %}
-                <a href="{{ url_for('complete_item', id=item.id) }}" class="btn btn-warning">Mark as Complete</a>
+              {% if item.idList == "5f67595969bcd66cadc9b3a7" %}
+                <h5 style="color:blue;">Not Started</h5>
+              {% elif item.idList == "5f67595969bcd66cadc9b3a8" %}
+                <h5 style="color:orange;">In Progress</h5>
+              {% else %}
+                <h5 style="color:green;">Done</h5>
+              {% endif %}
+            </td>
+            <td>
+              {% if item.idList == "5f67595969bcd66cadc9b3a7" %}
+                <a href="{{ url_for('move_item_to_inprogress', id=item.id) }}" class="btn btn-primary">Mark as In Progress</a>
+                <a href="{{ url_for('move_item_to_done', id=item.id) }}" class="btn btn-success">Mark as Done</a>
+              {% elif item.idList == "5f67595969bcd66cadc9b3a8" %}
+                <a href="{{ url_for('move_item_to_done', id=item.id) }}" class="btn btn-success">Mark as Done</a>
+              {% else %}
               {% endif %}
             </td>
           </tr>
