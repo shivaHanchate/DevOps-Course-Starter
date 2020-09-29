@@ -1,78 +1,41 @@
-import requests
-from config import api_key, token, boardId, toDoListId, doingListId, doneListId
 from flask import Flask, render_template, request, redirect, url_for
-
+from trello_api import TrelloApi
+from card import Card
 
 app = Flask(__name__)
-app.config.from_object('flask_config.Config')
-
-
-class Board:
-
-    def get_Board_Cards(api_key, token, boardId):
-        endpoint = f"https://api.trello.com/1/boards/{boardId}/cards?"
-        response = requests.get(endpoint, params={"key": api_key, "token": token}).json()
-        return response
-
-
-class List:
-
-    def get_List_Cards(api_key, token, CardId ):
-        endpoint = f"https://api.trello.com/1/cards/{CardId}/list?"
-        response = requests.get(endpoint, params={"key": api_key, "token": token}).json()
-        return response
-
-
-class Card:
-
-    def add_Card(api_key, token, newToDoItem):
-        endpoint = f"https://api.trello.com/1/cards?name={newToDoItem}"
-        response = requests.post(endpoint, params={"key": api_key, "token": token, "idList": toDoListId}).json()
-        return response
-
-    def move_Card_NotStarted_InProgress(id):
-        endpoint = f"https://api.trello.com/1/cards/{id}/idList?value={doingListId}"
-        response = requests.put(endpoint, params={"key": api_key, "token": token}).json()
-        return response
-
-    def move_Card_InProgress_Done(id):
-        endpoint = f"https://api.trello.com/1/cards/{id}/idList?value={doneListId}"
-        response = requests.put(endpoint, params={"key": api_key, "token": token}).json()
-        return response
-
-    def move_Card_Done_Todo(id):
-        endpoint = f"https://api.trello.com/1/cards/{id}/idList?value={toDoListId}"
-        response = requests.put(endpoint, params={"key": api_key, "token": token}).json()
-        return response
+trello_api = TrelloApi()
+card = Card()
 
 
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        newToDoItem = request.form["NewToDoItem"]
-        Card.add_Card(api_key, token, newToDoItem)
-        data = Board.get_Board_Cards(api_key, token, boardId)
-        return render_template('index.html', items=data)
-    data = Board.get_Board_Cards(api_key, token, boardId)
-    print(data)
-    return render_template('index.html', items = data)
+        new_todo_item = request.form["NewToDoItem"]
+        trello_api.add_card(new_todo_item)
+        data = trello_api.get_board_cards()
+        response = card.card_details(data)
+        return render_template('index.html', items=response)
+    data = trello_api.get_board_cards()
+    response = card.card_details(data)
+    print(response)
+    return render_template('index.html', items=response)
 
 
 @app.route('/items/<id>/inprogress')
-def move_item_to_inprogress(id):
-    Card.move_Card_NotStarted_InProgress(id)
+def move_item_to_in_progress(id):
+    trello_api.move_card_not_started_in_progress(id)
     return redirect(url_for('index'))
 
 
 @app.route('/items/<id>/done')
 def move_item_to_done(id):
-    Card.move_Card_InProgress_Done(id)
+    trello_api.move_card_in_progress_done(id)
     return redirect(url_for('index'))
 
 
 @app.route('/items/<id>/todo')
 def move_item_todo(id):
-    Card.move_Card_Done_Todo(id)
+    trello_api.move_card_done_todo(id)
     return redirect(url_for('index'))
 
 
