@@ -42,20 +42,20 @@
           <tbody>
           {% for item in items %}
           <tr>
-            <td>{{item['name']}}</td>
+            <td>{{item.card_name}}</td>
             <td>
-              {% if item.idList == "5f67595969bcd66cadc9b3a7" %}
+              {% if item.status == "ToDo" %}
                 <h5 style="color:blue;">Not Started</h5>
-              {% elif item.idList == "5f67595969bcd66cadc9b3a8" %}
+              {% elif item.status == "Doing" %}
                 <h5 style="color:orange;">In Progress</h5>
               {% else %}
                 <h5 style="color:green;">Done</h5>
               {% endif %}
             </td>
             <td>
-              {% if item.idList == "5f67595969bcd66cadc9b3a7" %}
-                <a href="{{ url_for('move_item_to_inprogress', id=item.id) }}" class="btn btn-primary">Mark as In Progress</a>
-              {% elif item.idList == "5f67595969bcd66cadc9b3a8" %}
+              {% if item.status == "ToDo" %}
+                <a href="{{ url_for('move_item_to_in_progress', id=item.id) }}" class="btn btn-primary">Mark as In Progress</a>
+              {% elif item.status == "Doing" %}
                 <a href="{{ url_for('move_item_to_done', id=item.id) }}" class="btn btn-success">Mark as Done</a>
               {% else %}
                 <a href="{{ url_for('move_item_todo', id=item.id) }}" class="btn btn-warning">Mark as ToDo</a>
