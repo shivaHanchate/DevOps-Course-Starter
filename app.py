@@ -1,24 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for
 from trello_api import TrelloApi
-from card import Card
+from card import CardService
 
 app = Flask(__name__)
 trello_api = TrelloApi()
-card = Card()
+card_service = CardService()
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/')
 def index():
-    if request.method == "POST":
-        new_todo_item = request.form["NewToDoItem"]
-        trello_api.add_card(new_todo_item)
-        data = trello_api.get_board_cards()
-        response = card.card_details(data)
-        return render_template('index.html', items=response)
-    data = trello_api.get_board_cards()
-    response = card.card_details(data)
-    print(response)
+    response = card_service.card_details(trello_api.get_board_cards())
     return render_template('index.html', items=response)
+
+
+@app.route('/', methods=["POST"])
+def add_item():
+    new_todo_item = request.form["NewToDoItem"]
+    trello_api.add_card(new_todo_item)
+    return redirect(url_for('index'))
 
 
 @app.route('/items/<id>/inprogress')
