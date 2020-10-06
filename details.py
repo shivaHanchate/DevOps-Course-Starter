@@ -1,6 +1,0 @@
-api_key = "Enter api key"
-token = "enter token"
-board_id = "enter board id"
-todo_list_id = "enter todo list id"
-doing_list_id = "enter doing list id"
-done_list_id = "enter done list id"
