@@ -1,28 +1,25 @@
-from config import api_key, token, board_id, todo_list_id, doing_list_id, done_list_id
+import os
 
 
-class Card:
+class CardService:
     def __init__(self):
-        self.api_key = api_key
-        self.token = token
-        self.board_id = board_id
-        self.todo_list_id = todo_list_id
-        self.doing_list_id = doing_list_id
-        self.done_list_id = done_list_id
+        self.todo_list_id = os.getenv('todo_list_id')
+        self.doing_list_id = os.getenv('doing_list_id')
 
     def card_details(self, data):
-        trello_card = []
+        trello_cards = []
         for item in data:
-            id_card = item['id']
+            card_id = item['id']
             card_name = item['name']
             if item['idList'] == self.todo_list_id:
-                status = "ToDo"
+                card_status = "ToDo"
             elif item['idList'] == self.doing_list_id:
-                status = "Doing"
+                card_status = "Doing"
             else:
-                status = "Done"
-            trello_card.append({"id": id_card, "card_name": card_name, "status": status})
-        return trello_card
+                card_status = "Done"
+            card = {"id": card_id, "card_name": card_name, "status": card_status}
+            trello_cards.append(card)
+        return trello_cards
 
 
 
