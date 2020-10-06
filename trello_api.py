@@ -1,16 +1,16 @@
 import requests
-from config import api_key, token, board_id, todo_list_id, doing_list_id, done_list_id
+import os
 
 
 class TrelloApi:
 
     def __init__(self):
-        self.api_key = api_key
-        self.token = token
-        self.board_id = board_id
-        self.todo_list_id = todo_list_id
-        self.doing_list_id = doing_list_id
-        self.done_list_id = done_list_id
+        self.api_key = os.getenv('api_key')
+        self.token = os.getenv('token')
+        self.board_id = os.getenv('board_id')
+        self.todo_list_id = os.getenv('todo_list_id')
+        self.doing_list_id = os.getenv('doing_list_id')
+        self.done_list_id = os.getenv('done_list_id')
 
     def get_board_cards(self):
         endpoint = f"https://api.trello.com/1/boards/{self.board_id}/cards?"
@@ -18,7 +18,7 @@ class TrelloApi:
         return response
 
     def get_board_lists(self):
-        endpoint = f"https://api.trello.com/1/boards/{board_id}/lists?"
+        endpoint = f"https://api.trello.com/1/boards/{self.board_id}/lists?"
         response = requests.get(endpoint, params={"key": self.api_key, "token": self.token}).json()               
         return response
 
@@ -28,8 +28,8 @@ class TrelloApi:
         return response
 
     def add_card(self, new_todo_item):
-        endpoint = f"https://api.trello.com/1/cards?name={new_todo_item}"
-        response = requests.post(endpoint, params={"key": self.api_key, "token": self.token, "idList": self.todo_list_id}).json()
+        endpoint = f"https://api.trello.com/1/cards?"
+        response = requests.post(endpoint, params={"name": new_todo_item, "key": self.api_key, "token": self.token, "idList": self.todo_list_id}).json()
         return response
 
     def move_card_not_started_in_progress(self, card_id):
