@@ -114,3 +114,6 @@ env/
 
 ### Configuration files ###
 .env
+
+### Config.py file ###
+config.py
