@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from trello_api import TrelloApi
-from card import CardService
+from card_services import CardService
+from view_model import ViewModel
 
 app = Flask(__name__)
 trello_api = TrelloApi()
@@ -10,7 +11,9 @@ card_service = CardService()
 @app.route('/')
 def index():
     response = card_service.card_details(trello_api.get_board_cards())
-    return render_template('index.html', items=response)
+    item_view_model = ViewModel(response)
+    print(item_view_model)
+    return render_template('index.html', view_model=item_view_model)
 
 
 @app.route('/', methods=["POST"])
