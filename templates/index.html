@@ -9,12 +9,12 @@
 
   <div class="container-fluid">
     <div class="card">
-      <div class="card-header">Add New To DO List Item</div>
+      <div class="card-header">Add New To Do List Item</div>
           <div class="card-body">
               <form action="" method="post">
                 <div class="row">
                   <div class="input-group col-4">
-                      <label class="sr-only">To DO item title</label>
+                      <label class="sr-only">To Do item title</label>
                       <input type="text" class="form-control" id="NewItemTitle" name="NewToDoItem" placeholder="Enter To Do item here" required>
                   </div>
                   <div class="input-group-append col-4">
@@ -27,44 +27,43 @@
       </div>
 
     <br>
-    <div class="card">
-      <div class="card-header" align="center">To Do List</div>
-      <div class="card-body">
-        <table class="table table-bordered table-hover">
-          <caption id="tcaption" style="color:#005B82"></caption>
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-          {% for item in view_model.items %}
-          <tr>
-            <td>{{item.card_name}}</td>
-            <td>
-              {% if item.status == "ToDo" %}
-                <h5 style="color:blue;">Not Started</h5>
-              {% elif item.status == "Doing" %}
-                <h5 style="color:orange;">In Progress</h5>
-              {% else %}
-                <h5 style="color:green;">Done</h5>
-              {% endif %}
-            </td>
-            <td>
-              {% if item.status == "ToDo" %}
-                <a href="{{ url_for('move_item_to_in_progress', id=item.id) }}" class="btn btn-primary">Mark as In Progress</a>
-              {% elif item.status == "Doing" %}
-                <a href="{{ url_for('move_item_to_done', id=item.id) }}" class="btn btn-success">Mark as Done</a>
-              {% else %}
-                <a href="{{ url_for('move_item_todo', id=item.id) }}" class="btn btn-warning">Mark as ToDo</a>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-          </tbody>
-        </table>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card border-primary">
+          <div class="card-header" style="color: rgb(0, 0, 0);font-size: 1.5rem;background-color: #24119c; padding: 3px;" align="center">ToDo List</div>
+          <div class="card-body">        
+            {% for item in view_model.todo_items %}
+                      
+                {{item.card_name}}              
+                <a href="{{ url_for('move_item_to_in_progress', id=item.id) }}" class="btn btn-primary float-right">Mark as In Progress</a>
+                <br><br>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card border-warning">
+          <div class="card-header" style="color: #000000; font-size: 1.5rem; background-color: sandybrown;padding: 3px;" align="center">Doing List</div>
+          <div class="card-body">        
+            {% for item in view_model.doing_items %}          
+              {{item.card_name}}          
+              <a href="{{ url_for('move_item_to_done', id=item.id) }}" class="btn btn-success float-right">Mark as Done</a>
+              <br><br>
+            {% endfor %}          
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">    
+        <div class="card border-success">
+          <div class="card-header" style="color: rgb(0, 0, 0);font-size: 1.5rem; background-color: #037203; padding: 3px;" align="center">Done List</div>
+          <div class="card-body">        
+            {% for item in view_model.done_items %}
+              {{item.card_name}}     
+              <a href="{{ url_for('move_item_todo', id=item.id) }}" class="btn btn-warning float-right" >Mark as ToDo</a>
+              <br><br>           
+            {% endfor %}        
+          </div>
+          </div>
       </div>
     </div>
   </div>

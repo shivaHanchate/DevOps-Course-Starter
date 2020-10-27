@@ -10,9 +10,8 @@ card_service = CardService()
 
 @app.route('/')
 def index():
-    response = card_service.card_details(trello_api.get_board_cards())
-    item_view_model = ViewModel(response)
-    print(item_view_model)
+    trello_cards = card_service.card_details(trello_api.get_board_cards())
+    item_view_model = ViewModel(trello_cards)    
     return render_template('index.html', view_model=item_view_model)
 
 
