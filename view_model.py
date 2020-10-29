@@ -1,6 +1,9 @@
+import pendulum
+
 class ViewModel:
     def __init__(self, items):
         self._items = items
+   
 
     @property
     def items(self):
@@ -32,12 +35,35 @@ class ViewModel:
 
     @property
     def show_all_done_items(self):
-        pass
+        all_done_items = []        
+        for item in self.items:
+            if item.status == "Done":
+                all_done_items.append(item)
+        return all_done_items
 
     @property
     def recent_done_items(self):
-        pass
+        recent_done_items = []           
+        for item in self.items:            
+            if item.status == "Done":
+                now = pendulum.now('Europe/London')
+                now = now.to_iso8601_string()
+                now = pendulum.parse(now).format('DD/MM/YYYY') 
+                mod_date = pendulum.parse(str(item.mod_date)).format('DD/MM/YYYY')                
+                if  mod_date == now:
+                    recent_done_items.append(item)
+        return recent_done_items
 
     @property
     def older_done_items(self):
-        pass
+        older_done_items = []
+        for item in self.items:            
+            if item.status == "Done":
+                now = pendulum.now('Europe/London')
+                now = now.to_iso8601_string()
+                now = pendulum.parse(now).format('DD/MM/YYYY')
+                mod_date = pendulum.parse(str(item.mod_date)).format('DD/MM/YYYY')                
+                if  mod_date != now:
+                    older_done_items.append(item)
+        return older_done_items
+

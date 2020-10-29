@@ -18,6 +18,7 @@ class CardService:
                 card_status = "Doing"
             else:
                 card_status = "Done"
-            card = Card(card_id, card_name, card_status)
-            trello_cards.append(card)
+            card_mod_date = item['dateLastActivity']                     
+            card = Card(card_id, card_name, card_status, card_mod_date)            
+            trello_cards.append(card)            
         return trello_cards

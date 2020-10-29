@@ -56,15 +56,42 @@
       <div class="col-sm-4">    
         <div class="card border-success">
           <div class="card-header" style="color: rgb(0, 0, 0);font-size: 1.5rem; background-color: #037203; padding: 3px;" align="center">Done List</div>
-          <div class="card-body">        
-            {% for item in view_model.done_items %}
-              {{item.card_name}}     
-              <a href="{{ url_for('move_item_todo', id=item.id) }}" class="btn btn-warning float-right" >Mark as ToDo</a>
-              <br><br>           
-            {% endfor %}        
+            <div class="card-body">             
+              {% if view_model.done_items | length <= 4 %}
+                <details>
+                  <summary>All Done Items</summary>  
+                    <br>   
+                    {% for item in view_model.show_all_done_items %}
+                      {{item.card_name}}     
+                      <a href="{{ url_for('move_item_todo', id=item.id) }}" class="btn btn-warning float-right" >Mark as ToDo</a>
+                      <br><br>           
+                    {% endfor %} 
+                </details>
+              {% else %}
+                <details>
+                  <summary>Recent Done Items</summary> 
+                    <br>    
+                    {% for item in view_model.recent_done_items %}
+                      {{item.card_name}}     
+                      <a href="{{ url_for('move_item_todo', id=item.id) }}" class="btn btn-warning float-right" >Mark as ToDo</a>
+                      <br><br>           
+                    {% endfor %} 
+                </details>
+                <details>
+                  <summary>Older Done Items</summary>  
+                    <br>    
+                    {% for item in view_model.older_done_items %}
+                      {{item.card_name}}     
+                      <a href="{{ url_for('move_item_todo', id=item.id) }}" class="btn btn-warning float-right" >Mark as ToDo</a>
+                      <br><br>           
+                    {% endfor %} 
+                </details>
+              {% endif %}
+            </div>
           </div>
-          </div>
+        </div>
       </div>
+      <br><br>
     </div>
   </div>
 {% endblock %}
