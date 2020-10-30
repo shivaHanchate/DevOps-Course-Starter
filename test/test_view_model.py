@@ -76,8 +76,8 @@ def test_recent_done_items():
     trello_cards = [
         Card(1, "First item", "ToDo", "2020-10-27T22:02:07.091Z"),
         Card(2, "Second item", "Doing", "2020-10-28T22:02:07.091Z"),
-        Card(3, "Third item", "Done", "2020-10-29T12:02:07.091Z"),
-        Card(4, "Fourth item", "Done", "2020-10-29T22:02:07.091Z"),
+        Card(3, "Third item", "Done", "2020-10-30T12:02:07.091Z"),
+        Card(4, "Fourth item", "Done", "2020-10-30T22:02:07.091Z"),
         Card(5, "Fifth item", "Done", "2020-10-26T22:02:07.091Z"),
         Card(6, "Sixth item", "Done", "2020-10-26T22:02:07.091Z"),
         Card(7, "Seventh item", "Done", "2020-10-26T22:02:07.091Z"),
@@ -93,8 +93,8 @@ def test_older_done_items():
     trello_cards = [
         Card(1, "First item", "ToDo", "2020-10-27T22:02:07.091Z"),
         Card(2, "Second item", "Doing", "2020-10-28T22:02:07.091Z"),
-        Card(3, "Third item", "Done", "2020-10-29T12:02:07.091Z"),
-        Card(4, "Fourth item", "Done", "2020-10-29T22:02:07.091Z"),
+        Card(3, "Third item", "Done", "2020-10-30T12:02:07.091Z"),
+        Card(4, "Fourth item", "Done", "2020-10-30T22:02:07.091Z"),
         Card(5, "Fifth item", "Done", "2020-10-26T22:02:07.091Z"),
         Card(6, "Sixth item", "Done", "2020-10-26T22:02:07.091Z"),
         Card(7, "Seventh item", "Done", "2020-10-26T22:02:07.091Z"),
