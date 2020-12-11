@@ -3,8 +3,6 @@ from dotenv import find_dotenv, load_dotenv
 from unittest.mock import patch, Mock
 import os
 
-from requests.models import Response
-
 from app import create_app
 
 @pytest.fixture
@@ -26,7 +24,8 @@ def test_index_page(mock_get_requests, client):
     assert "200 OK" == response.status     
     assert b"Test Todo" in response.data
     assert b"Test Doing" in response.data
-    assert b"Test Done" in response.data    
+    assert b"Test Done" in response.data   
+    assert b"Done Test" not in response.data
 
 sample_trello_cards_response = [{
     "id": "1",
