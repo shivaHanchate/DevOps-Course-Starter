@@ -117,3 +117,7 @@ env/
 
 ### Config.py file ###
 config.py
+
+### geckodriver.exe and geckodriver.log ###
+geckodriver.exe
+geckodriver.log
