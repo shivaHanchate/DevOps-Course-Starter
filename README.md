@@ -38,6 +38,17 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like developement mode (which also enables features like hot reloading when you make a file change).
 
-please add API key, token, board_id, todo_list_id, doing_list_id and done_list_id variables to .env to match your Trello details.
+Please add API key, token, board_id, todo_list_id, doing_list_id and done_list_id variables to .env to match your Trello details.
+
+Please add API key, token, board_id, todo_list_id, doing_list_id and done_list_id variables to .env.test beforerunning the test.
+
+Please download and copy geckodriver.exe into DEVOPS-COURSE-STARTER folder.
+
+test_view_model.py  - This is the unit test written as part of the TDD(Part1 Step 2 & 3) to add functionality to view model.
+test_trello_app.py - This is integration tests
+test_app.py - This is to test written to test end to end testing.
+
+
+
 
 When running `setup.sh`, the `.env.template` file will be copied to `.env` if the latter does not exist.
