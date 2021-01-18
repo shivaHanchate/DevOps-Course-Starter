@@ -56,14 +56,20 @@ def driver():
 
 
 def test_task_journey(driver: webdriver, test_app):
-    driver.get('http://localhost:5000/')
+    driver.get('http://localhost:5000/')    
     assert driver.title == 'To-Do App'
     text_input = driver.find_element_by_xpath("//*[@id='NewItemTitle']")
-    text_input.send_keys("New Todo")    
-    driver.find_element_by_xpath("//button[contains(text(),'Add Item')]").click()    
-    driver.find_element_by_xpath("//a[contains(text(),'Mark as In Progress')]").click()
-    driver.find_element_by_xpath("//a[contains(text(),'Mark as Done')]").click()    
+    text_input.send_keys("New Todo")   
+    assert  driver.find_element_by_xpath("//button[contains(text(),'Add Item')]").text == "Add Item"  
+    driver.find_element_by_xpath("//button[contains(text(),'Add Item')]").click()   
+    assert  driver.find_element_by_xpath("//a[contains(text(),'Mark as In Progress')]").text == "Mark as In Progress"      
+    driver.find_element_by_xpath("//a[contains(text(),'Mark as In Progress')]").click()    
+    assert  driver.find_element_by_xpath("//a[contains(text(),'Mark as Done')]").text == "Mark as Done"    
+    driver.find_element_by_xpath("//a[contains(text(),'Mark as Done')]").click()     
+    assert  driver.find_element_by_xpath("//summary[contains(text(),'All Done Items')]").text == "All Done Items"   
     driver.find_element_by_xpath("//summary[contains(text(),'All Done Items')]").click()
+    assert  driver.find_element_by_xpath("//a[contains(text(),'Mark as ToDo')]").text == "Mark as ToDo"    
     driver.find_element_by_xpath("//a[contains(text(),'Mark as ToDo')]").click()
+    assert  driver.find_element_by_xpath("//a[contains(text(),'Mark as In Progress')]").text == "Mark as In Progress" 
    
    

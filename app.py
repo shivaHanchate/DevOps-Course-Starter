@@ -4,9 +4,6 @@ from card_services import CardService
 from view_model import ViewModel
 
 
-
-
-
 def create_app():
     app = Flask(__name__)    
     trello_api = TrelloApi()

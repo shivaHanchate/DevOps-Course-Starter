@@ -122,5 +122,4 @@ config.py
 geckodriver.exe
 geckodriver.log
 
-.exe
-.log
+*.log
