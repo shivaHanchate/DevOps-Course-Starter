@@ -4,22 +4,41 @@
 
 The project uses a virtual environment to isolate package dependencies. To create the virtual environment and install required packages, run the following from a bash shell terminal:
 
-### On macOS and Linux
+### Poetry installation (Bash)
+
 ```bash
-$ source setup.sh
-```
-### On Windows (Using PowerShell)
-```powershell
-$ .\setup.ps1
-```
-### On Windows (Using Git Bash)
-```bash
-$ source setup.sh --windows
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 ```
 
-Once the setup script has completed and all packages have been installed, start the Flask app by running:
+### Poetry installation (PowerShell)
+
+```powershell
+(Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python
+```
+
+## Dependencies
+
+The project uses a virtual environment to isolate package dependencies. To create the virtual environment and install required packages, run the following from your preferred shell:
+
 ```bash
-$ flask run
+$ poetry install
+```
+
+You'll also need to clone a new `.env` file from the `.env.template` to store local configuration options. This is a one-time operation on first setup:
+
+```bash
+$ cp .env.template .env  # (first time only)
+```
+
+The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like developement mode (which also enables features like hot reloading when you make a file change).
+
+Please add API key, token, board_id, todo_list_id, doing_list_id and done_list_id variables to .env to match your Trello details.
+
+## Running the App
+
+Once the all dependencies have been installed, start the Flask app in development mode within the poetry environment by running:
+```bash
+$ poetry run flask run
 ```
 
 You should see output similar to the following:
@@ -34,11 +53,7 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-### Notes
-
-The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like developement mode (which also enables features like hot reloading when you make a file change).
-
-Please add API key, token, board_id, todo_list_id, doing_list_id and done_list_id variables to .env to match your Trello details.
+### Note
 
 Please download and copy geckodriver.exe into DEVOPS-COURSE-STARTER folder.
 
@@ -52,5 +67,3 @@ Tests can be run from command line using the below pytest commands:
 1. pytest test\test_view_model.py
 2. pytest test\test_trello_app.py
 3. pytest test\test_app.py
-
-When running `setup.sh`, the `.env.template` file will be copied to `.env` if the latter does not exist.
