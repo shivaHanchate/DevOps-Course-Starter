@@ -123,5 +123,8 @@ geckodriver.log
 
 *.log
 
+### Virtual Machine ###
+.vagrant
+
 
 
