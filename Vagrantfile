@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.profile
     # Refresh shell for PATH changes to take effect
     . ~/.profile
-    
+
     # Install new python version and set as default    
     pyenv install 3.8.3
     pyenv global 3.8.3
@@ -33,4 +33,18 @@ Vagrant.configure("2") do |config|
     #source $HOME/.poetry/env
 
   SHELL
+
+  config.trigger.after :up do |trigger|
+    trigger.name = "Launching App"
+    trigger.info = "Running the TODO app setup script"
+    trigger.run_remote = {privileged: false, inline: "
+      # Install dependencies and launch
+      # <your script here>
+      cd /vagrant
+      poetry install
+      poetry run flask run 
+     
+    "}
+  end
+  
 end
