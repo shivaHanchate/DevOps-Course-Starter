@@ -1,5 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/bionic64"
+  # Network forwarding
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     sudo apt-get update
@@ -42,7 +44,7 @@ Vagrant.configure("2") do |config|
       # <your script here>
       cd /vagrant
       poetry install
-      poetry run flask run 
+      poetry run flask run --host=0.0.0.0
      
     "}
   end
