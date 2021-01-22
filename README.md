@@ -53,17 +53,30 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-### Note
+## Running the App using Virtual Machine
+```bash
+$ vagrant up
+```
 
-Please download and copy geckodriver.exe into DEVOPS-COURSE-STARTER folder.
+You should see output similar to the following:
+```bash
+ * Serving Flask app "app" (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 194-161-610
+```
+Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-End to End testing(test_app.py) is carried out using Firefox browser, so please install Firefox browser before running End to End test.
+## Notes:
 
-test_view_model.py  - This is the unit test written as part of the TDD(Part1 Step 2 & 3) to add functionality to view model.
-test_trello_app.py - This is integration tests
-test_app.py - This is to test written to test end to end testing.
-
-Tests can be run from command line using the below pytest commands:
-1. pytest test\test_view_model.py
-2. pytest test\test_trello_app.py
-3. pytest test\test_app.py
+## command to suspend Virtual Machine
+```bash
+$ vagrant suspend
+```
+## command to destroy Virtual Machine
+```bash
+$ vagrant destroy
+```
