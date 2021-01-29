@@ -111,9 +111,8 @@ dmypy.json
 
 ### Virtual environment ###
 env/
-
-### Configuration files ###
 .env
+.venv/
 
 ### Config.py file ###
 config.py
@@ -123,3 +122,9 @@ geckodriver.exe
 geckodriver.log
 
 *.log
+
+### Virtual Machine ###
+.vagrant
+
+
+
