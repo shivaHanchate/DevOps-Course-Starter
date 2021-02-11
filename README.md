@@ -161,7 +161,3 @@ you should see output similar to the following
 ```bash
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
-
-
-
-
