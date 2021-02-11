@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from trello_api import TrelloApi
-from card_services import CardService
-from view_model import ViewModel
+from todo_app.trello_api import TrelloApi
+from todo_app.card_services import CardService
+from todo_app.view_model import ViewModel
 
 
 def create_app():
