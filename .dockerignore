@@ -127,3 +127,6 @@ geckodriver.log
 
 ### Dockerfile
 Dockerfile
+
+### Git
+.git
