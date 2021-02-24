@@ -34,7 +34,7 @@ The `.env` file is used by flask to set environment variables when running `flas
 
 Please add API key, token, board_id, todo_list_id, doing_list_id and done_list_id variables to .env to match your Trello details.
 
-## Running the App
+## Running the App using poetry
 
 Once the all dependencies have been installed, start the Flask app in development mode within the poetry environment by running:
 ```bash
@@ -79,4 +79,85 @@ $ vagrant suspend
 ## command to destroy Virtual Machine
 ```bash
 $ vagrant destroy
+```
+
+## Running the App using Docker
+
+# Development
+
+Building the image
+```bash
+$ docker build --target development --tag todo-app:dev .
+```
+Run the container
+```bash
+$ $ docker run --env-file ./.env -p 5000:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/app/todo_app todo-app:dev
+```
+
+
+You should see output similar to the following:
+```bash
+ * Serving Flask app "todo_app/app" (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 149-286-225
+```
+Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+# Production
+
+Building the image
+```bash
+$ docker build --target production --tag todo-app:prod .
+```
+Run the container
+```bash
+$ docker run --env-file ./.env -p 5000:8000 todo-app:prod
+```
+
+You should see output similar to the following:
+```bash
+[2021-02-11 11:44:57 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[2021-02-11 11:44:57 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2021-02-11 11:44:57 +0000] [1] [INFO] Using worker: sync
+[2021-02-11 11:44:57 +0000] [10] [INFO] Booting worker with pid: 10
+[2021-02-11 11:44:57 +0000] [11] [INFO] Booting worker with pid: 11
+[2021-02-11 11:44:57 +0000] [12] [INFO] Booting worker with pid: 12
+[2021-02-11 11:44:57 +0000] [13] [INFO] Booting worker with pid: 13
+```
+Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Notes:
+Check if gunicorn port number is 8000 if not run the container again by using your guinicorn port number.
+'''[2021-02-11 11:44:57 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)'''
+
+## command to list running docker container
+```bash
+$ docker ps
+```
+you should see output similar to the following
+```bash
+CONTAINER ID   IMAGE           COMMAND                  CREATED         STATUS         PORTS                              NAMES
+5463bf080c9f   todo-app:prod   "poetry run gunicorn…"   5 minutes ago   Up 5 minutes   5000/tcp, 0.0.0.0:5000->8000/tcp   happy_swirles
+```
+
+## command to stop docker container
+```bash
+$ docker stop 5463bf080c9f
+```
+5463bf080c9f is the Container ID
+
+you should see output similar to the following
+```bash
+5463bf080c9f
+```
+```bash
+$ docker ps
+```
+you should see output similar to the following
+```bash
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
