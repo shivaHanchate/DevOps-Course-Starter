@@ -17,11 +17,11 @@ script:
 
 notifications:
   slack: corndelcapitadevops:1mvKJYYM8Kug88QuER7qiYsp
-    on_success: always # default: always
+    on_success: always # default: change
     on_failure: always # default: always
 
   email:
     recipients:
       - shiva.hanchate@capita.com
-    on_success: always # default: always
+    on_success: always # default: change
     on_failure: always # default: always
