@@ -110,8 +110,6 @@ dmypy.json
 env/
 .env
 .venv/
-.env.test
-.env.template
 
 ### Config.py file ###
 config.py

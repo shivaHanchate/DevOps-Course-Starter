@@ -7,10 +7,10 @@ script:
 - docker run --env-file .env.test my-test-image ./todo_app/test/test_app.py
 - >
     docker run
-    -e api_key=${api_key}
-    -e token=${token}
-    -e board_id=${board_id}
-    -e todo_list_id=${todo_list_id}
-    -e doing_list_id=${doing_list_id}
-    -e done_list_id=${done_list_id}
+    -e api_key
+    -e token
+    -e board_id
+    -e todo_list_id
+    -e doing_list_id
+    -e done_list_id
     my-test-image ./todo_app/test/test_trello_app.py
