@@ -21,7 +21,7 @@ ENTRYPOINT ["poetry","run","flask","run","--host=0.0.0.0"]
 FROM base as test
 COPY . .
 ENV FLASK_APP todo_app/app.py
-ENV PYTHONPATH=/app
+
 # Install Chrome for Selenium
 RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
 RUN dpkg -i /chrome.deb || apt-get install -yf
