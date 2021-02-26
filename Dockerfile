@@ -24,7 +24,6 @@ ENV FLASK_APP todo_app/app.py
 RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
 RUN dpkg -i /chrome.deb || apt-get install -yf
 RUN rm /chrome.deb
-
 # Install chromedriver for Selenium
 RUN LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE` && echo $LATEST && curl https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o /app/chromedriver.zip
 RUN apt-get install unzip -y && unzip ./chromedriver.zip
