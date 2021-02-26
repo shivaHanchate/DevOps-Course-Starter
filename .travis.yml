@@ -16,8 +16,10 @@ script:
     my-test-image ./todo_app/test/test_trello_app.py
 
 notifications:
+  slack: corndelcapitadevops:aWot77yGBrccJU6PG12ZOpUf
+
   email:
     recipients:
       - shiva.hanchate@capita.com
-    on_success: never # default: change
+    on_success: always # default: change
     on_failure: always # default: always
