@@ -14,3 +14,14 @@ script:
     -e doing_list_id
     -e done_list_id
     my-test-image ./todo_app/test/test_trello_app.py
+
+notifications:
+  slack: corndelcapitadevops:1mvKJYYM8Kug88QuER7qiYsp
+    on_success: always # default: always
+    on_failure: always # default: always
+
+  email:
+    recipients:
+      - shiva.hanchate@capita.com
+    on_success: always # default: always
+    on_failure: always # default: always
