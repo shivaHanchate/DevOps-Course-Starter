@@ -21,5 +21,5 @@ notifications:
   email:
     recipients:
       - shiva.hanchate@capita.com
-    on_success: always # default: change
+    on_success: never # default: change
     on_failure: always # default: always
