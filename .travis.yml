@@ -19,9 +19,9 @@ script:
     my-test-image ./todo_app/test/test_trello_app.py
 
 notifications:
-  -e slack:
+  -e slack
 
   email:
-    -e recipients:
+    -e recipients
     on_success: always # default: change
     on_failure: always # default: always
