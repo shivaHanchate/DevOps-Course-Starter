@@ -215,6 +215,29 @@ todo_app/test/test_trello_app.py  * Serving Flask app "todo_app.app" (lazy loadi
 
 Please encrypt api_key & token by following encryption steps using travis documentation (https://docs.travis-ci.com/user/encryption-keys)
 
+```bash
+$ travis encrypt --pro api_key=YOUR_TRELLO_API_KEY
+```
+```bash
+$ travis encrypt --pro token=YOUR_TRELLO_TOKEN
+```
 
 # Set up Travis CI build status notification
 Please encrypt slack(first you need to visit https://my.slack.com/services/new/travis to obtain integration key) and email address for receiving notification by following encryption steps using travis documentation (https://docs.travis-ci.com/user/encryption-keys)
+
+Email notification
+```bash
+$ travis encrypt --pro "YOUR_EMAIL_ADDRESS"
+```
+Slack notification
+```bash
+$ travis encrypt --pro "YOUR_SLACK_INTEGRATION_KEY"
+```
+
+# How to Install Travis for encrypting variables
+
+1. Install Ruby by dowloading latest ruby version from https://rubyinstaller.org/downloads/
+2. installing Travis
+```bash
+$ gem install travis
+```
