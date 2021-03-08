@@ -211,13 +211,10 @@ todo_app/test/test_trello_app.py  * Serving Flask app "todo_app.app" (lazy loadi
 
 ============================== 1 passed in 10.32s ==============================
 
-# Set up Travis CI 
+# Set up Travis CI environment variables (Encrypting Sensitive Data)
 
-Please add following variables to your environment variables by visiting https://travis-ci.com/github/YOUR_USERNAME/YOUR_REPOSITORY_NAME/settings
+Please encrypt api_key & token by following encryption steps using travis documentation (https://docs.travis-ci.com/user/encryption-keys)
 
-api_key
-token
-board_id
-todo_list_id
-doing_list_id
-done_list_id
+
+# Set up Travis CI build status notification
+Please encrypt slack(first you need to visit https://my.slack.com/services/new/travis to obtain integration key) and email address for receiving notification by following encryption steps using travis documentation (https://docs.travis-ci.com/user/encryption-keys)
