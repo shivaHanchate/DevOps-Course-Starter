@@ -81,9 +81,9 @@ $ vagrant suspend
 $ vagrant destroy
 ```
 
-## Running the App using Docker
+# Running the App using Docker
 
-# Development
+## Development
 
 Building the image
 ```bash
@@ -107,7 +107,7 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-# Production
+## Production
 
 Building the image
 ```bash
@@ -160,4 +160,84 @@ $ docker ps
 you should see output similar to the following
 ```bash
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
+## Test
+
+Building the image
+```bash
+$ docker build --target test --tag my-test-image .
+```
+Run unit test in the "todo_app/test" directory
+```bash
+$ docker run my-test-image ./todo_app/test/test_view_model.py
+```
+You should see output similar to the following:
+============================= test session starts ==============================
+platform linux -- Python 3.8.8, pytest-6.2.1, py-1.10.0, pluggy-0.13.1
+rootdir: /app
+collected 6 items
+
+todo_app/test/test_view_model.py ......                                  [100%]
+
+============================== 6 passed in 0.68s ===============================
+
+Run integration test in the "todo_app/test" directory
+```bash
+$ docker run --env-file ./.env.test my-test-image todo_app/test/test_app.py
+```
+You should see output similar to the following:
+============================= test session starts ==============================
+platform linux -- Python 3.8.8, pytest-6.2.1, py-1.10.0, pluggy-0.13.1
+rootdir: /app
+collected 1 item
+
+todo_app/test/test_app.py .                                              [100%]
+
+============================== 1 passed in 0.58s ===============================
+
+Run E2E test in the "todo_app/test" directory
+```bash
+$ docker run --env-file ./.env my-test-image todo_app/test/test_trello_app.py
+```
+You should see output similar to the following:
+============================= test session starts ==============================
+platform linux -- Python 3.8.8, pytest-6.2.1, py-1.10.0, pluggy-0.13.1
+rootdir: /app
+collected 1 item
+
+todo_app/test/test_trello_app.py  * Serving Flask app "todo_app.app" (lazy loading)
+.                                       [100%]
+
+============================== 1 passed in 10.32s ==============================
+
+# Set up Travis CI environment variables (Encrypting Sensitive Data)
+
+Please encrypt api_key & token by following encryption steps using travis documentation (https://docs.travis-ci.com/user/encryption-keys)
+
+```bash
+$ travis encrypt --pro api_key=YOUR_TRELLO_API_KEY
+```
+```bash
+$ travis encrypt --pro token=YOUR_TRELLO_TOKEN
+```
+
+# Set up Travis CI build status notification
+Please encrypt slack(first you need to visit https://my.slack.com/services/new/travis to obtain integration key) and email address for receiving notification by following encryption steps using travis documentation (https://docs.travis-ci.com/user/encryption-keys)
+
+Email notification
+```bash
+$ travis encrypt --pro "YOUR_EMAIL_ADDRESS"
+```
+Slack notification
+```bash
+$ travis encrypt --pro "YOUR_SLACK_INTEGRATION_KEY"
+```
+
+# How to Install Travis for encrypting variables
+
+1. Install Ruby by dowloading latest ruby version from https://rubyinstaller.org/downloads/
+2. installing Travis
+```bash
+$ gem install travis
 ```

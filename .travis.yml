@@ -1,0 +1,29 @@
+service:
+  - docker
+
+env:
+  global:
+  - secure: "p0VzwfInI3U0O7+5Sy7kDRjS1F9B/w1avmzRpuIdHwSSZBMc18RsFwhlBqNed/gliw99QEdlyHkieh4KkTdyh+2H87ngrZFMIG2WBHhcq/EcJIv3jX1/AKDKyMo2t+F/SRtrs0nhWmntGw3zO4xFAk1S2ZW3Iotq2eyaYDSCE6fBurgZSWtd+YIl9qBnU7the5w1VWhl0MSr4E3+nGUG/DtgDa6TOKgJICXqkNPUWAIKNK/epZMhxxqcRWIFEUCMXHdJ1XV4hIByE5adEGkXCrqFIllbrbr8VM7tJfXvdH2TpQlrnKXoX/QfHfqkgrq8/pP/FOkapUNdCCHvbV3VCnQ9d13riMy0l6MXTL+BLreiKwItYRjkwrQva/OWSvBMz4T1J+r9Wby7gi6x8BvVuymhqT4N3BFey6sNmEyHyZbzhupCt6Zt+aLsD8+DCWLABa1v4J00btXQ21s/rFGLQLGsGpfb10fgXHMzDWbus83o5MhXWQLFWKaW3UuRbbG9b+m2zom/Pxgwo+fOL6r0e8bR3HPh8fkmwwOftd5L7ee0csK9d7wiYVOmG2uiF22Mq2LVAeTHRWfrhoTB3BPEJ2E0MniVDht6I9Sa5UnIiyBdOZ+vJ7OpccWMYVI0GabZIBGMVz4bzfMZFJYlrojuxybQ5gB9vgihPrHKw07weKE="
+  - secure: "iwA25aSfU9uRNhmmMFUajaAUqzDmtN56eLX1bq5k5MTGoBAv2I0R1zUENpN8dCCWGMUInJRyn2PXHRdDA2lKlxl0W0osJBY8Hrcjm5OjQ4YTFE9wdwxORfJKHD9P0AfB5tU104N8AJrr3taq9A22O/pGbCjXPl+79/pGiqS9kPA0YZh/Vua+/tfGSjdOWoy5hQJtRJThN77dUJoJpWR3iVL6AJn6IElAzu2EzSRJz/9rJHTmsfq34alLVNysdVDY5NkMCDkZTTAxzrNTwePXKnbHeFELoHbnaB9vznCT4kzJ9yScTGXlzmy9b2bRJ/5756ZxN4EJ/Ltyl4qxHR8kAY9kOFZgG4MY6aTsWYHW6vRxJ8ZlIHCzEYVgP9mx2cZi+Go8ZcyQN1OkCpTR+1y9Lwwns454tS0A5fx/boyECBSpej9M+JF6yRrLdwE8BGhtANvU9c+N/ZDQofuAI332uAZVp8/rDSQ8c8IpU1banu0R6QmuWvKxPdpOvaaHcZCnzXkI4e5eY7cM0P0LmLGJwzX01ndL3nXUmGo+kW9GVghIVCgJXJ1+wHuge9iVCrCfqJkrtCrAPOwz9FL8h5UTJq2fTc+LQmiCAWXYJd3Fuu3lPN1z6ZB9nemNGa61IAYksF/VThqp/ZUzXR6rruggDd8Tk/36u81YCDeiEysDp/Q="
+  
+script:
+- docker build --target test --tag my-test-image .
+- docker run my-test-image ./todo_app/test/test_view_model.py
+- docker run my-test-image ./todo_app/test/test_app.py
+- >
+    docker run
+    -e api_key
+    -e token
+    my-test-image ./todo_app/test/test_trello_app.py
+
+notifications:
+  slack: 
+    rooms:
+      - secure: "f5jE+lxsALMs7M89FFdh/s+QcSw4yQchFfOiBLDd4gOxi3kXta4fGV7ypPBneuXfpxyQvpVIiI3xv8JcahEAr/TiC+M42iDlYnm6DqZYioPfds8TwfuyCJDg15SOiz/khJ+pmsztr8xVL0Gs6NIKL86GBi6ZryqywHJByydNKzMQRrL+jjNGFOBcGouieUXNW1AIOflBjeiMk910IrpFE7qfWMXX/1c5Mq/51J5t6OeCjIO256DBt8/Kk4xvUIgvIgv3TuIg61NLlIE6vQmNRKuJzOyV1HrYK6P+ISAFUvpmGmD+jXnOfQBw0cKOpncnBfpsQWJVIzyuVndgNMZKmTQdCNy/vBXwJsz4VKszZKfPJBiT/Xr0nH/zL81JS+h/Ib+nI4G4NJ4PIoUcKXy+TVn87N6jrdLQrphuCf1M8FoblqrjuIIe0RUyijrXZrrSdE+swnCxv1+sSKgysOqTy9AvM7sPl2M86uEqKTxqwa0kRfWIvMXWpPDpTKiQWpWpD8jNgM0KzE+Uc1sQG/tV2LPtbPIB3AoWyHburXx4cZb34z2n9W+5hhFWAy75FRTT1ld0LheuP/Nv596FZm0imMcKafRVP+5T65gpbXcGB2GRAWc+OSwpgtDbrcaFz9RF3ImCJKv5f5Ve+QKluLszQevKsll2rWCsoeHuQFxov8U="
+    on_success: always # default: change
+    on_failure: always # default: always
+  email:
+    recipients:
+      - secure: "f9qKfSUGq+KM+E49TVf9YqutdGpYLRKP8KXHF945Q+sXEDPlNS2lu8omBW4mwVt07/dNgoqwVUNLK5kyop1E637tjJg/A3FqTEkgpxJ/5SxCJB8EFQlPEOdNGk4yqMjvkuB50WDw+yS9iloXMRXWHAiOVr2EDH2wqUdSFr2N0UYTJxemk2OG/lQzJe0/vKyzlWULVgFkgYjcBm4xEIXK5WXs6CfpAYrZi5SgrWZgQlIBnCwIRzYgE0bl0vvToPJkhzwGBe1aiBDVVN3LR5rlmDKiQ6L/zhDt8G4OKK0BT/nsZka9FU0AaWGuNf2HFfAtypdgPNUuxwjTbFZhAu9WXR+GRUuuZKzN0OBA5oPfPSdC7amsEs23K3oYRogxwY6+mjW3qzdWGCioGNdl8zY4kF+OO0ktP31ReuPjCumvambGUPKn91u0+OV05KT7JLB26BhByyQi/8giAjI/BWEoK2nLuEf69XZ1blbCRHozRHrpf+FHfmMoAGf/TnhEY90JZ9ID5vpPBrhPQJiI81TBiJjMEOAmdxlS1xRW3lgw7gy4HxQqTuzD8/FDBXThsK0MFKFNNN2gOe8orEQMAskfskA8sWv0cjuF6CH0tWOevS0qZSuMZ1zx9hItdjraSHlCo5tLOeghi2yABRDHPacpWlNvFeHcgLqSvJuN9X3Nq2s="
+    on_success: never # default: change
+    on_failure: always # default: always
