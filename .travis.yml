@@ -10,8 +10,8 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # command to login to docker hub 
 
 before-script:
-  - docker build --target production --tag $DOCKER_USERNAME/ToDo-App:latest .
-  - docker push $DOCKER_USERNAME/ToDo-App:latest
+  - docker build --target production --tag $DOCKER_USERNAME/todo-app:latest .
+  - docker push $DOCKER_USERNAME/todo-app:latest
 
 script:
 - docker build --target test --tag my-test-image .
