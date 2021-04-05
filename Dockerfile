@@ -9,7 +9,8 @@ FROM base as production
 COPY ./todo_app /app/todo_app
 ENV PYTHONPATH=/app
 RUN poetry add gunicorn
-ENTRYPOINT ["poetry","run","gunicorn","-w","4","-b","0.0.0.0","todo_app.app:app"]
+EXPOSE $PORT
+ENTRYPOINT ["poetry","run","gunicorn","-w","4","-b","0.0.0.0:$PORT","todo_app.app:app"]
 
 FROM base as development
 ENV FLASK_APP todo_app/app.py
