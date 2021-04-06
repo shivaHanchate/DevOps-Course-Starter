@@ -10,10 +10,10 @@ env:
 before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # command to login to docker hub 
   - curl https://cli-assets.heroku.com/install.sh | sh
-  - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+  - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com --password-stdin
 before-script:
-  - docker build --target production --tag $DOCKER_USERNAME/todo-app:latest .
-  - docker tag $DOCKER_USERNAME/todo-app:latest registry.heroku.com/$HEROKU_APP/web
+  - docker build --target production --tag $DOCKER_USERNAME/todo-app:TRAVIS_COMMIT .
+  - docker tag $DOCKER_USERNAME/todo-app:TRAVIS_COMMIT registry.heroku.com/$HEROKU_APP/web
 
 script:
 - docker build --target test --tag my-test-image .
@@ -26,7 +26,7 @@ script:
     my-test-image ./todo_app/test/test_trello_app.py
 
 after-script:
-  - docker push $DOCKER_USERNAME/todo-app:latest
+  - docker push $DOCKER_USERNAME/todo-app:TRAVIS_COMMIT
 
 deploy:
   provider: script
