@@ -12,7 +12,7 @@ ENV PYTHONPATH=/app
 RUN poetry add gunicorn
 ENV PORT=8000
 EXPOSE $PORT
-ENTRYPOINT poetry run gunicorn -w 4 -b 0.0.0.0:$PORT todo_app.app:app
+ENTRYPOINT "poetry run gunicorn -w 4 -b 0.0.0.0:$PORT todo_app.app:app"
 
 FROM base as development
 ENV FLASK_APP todo_app/app.py
