@@ -12,6 +12,7 @@ ENV PYTHONPATH=/app
 RUN poetry add gunicorn
 ENV PORT=8000
 EXPOSE $PORT
+
 ENTRYPOINT ["./entrypoint_prod.sh"]
 
 FROM base as development

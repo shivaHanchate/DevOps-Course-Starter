@@ -9,8 +9,7 @@ env:
 
   before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # command to login to docker hub 
-  - curl https://cli-assets.heroku.com/install.sh | sh
-  
+  - curl https://cli-assets.heroku.com/install.sh | sh  
   - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY --password-stdin registry.heroku.com
 before-script:
   - docker build --target production --tag $DOCKER_USERNAME/todo-app:$TRAVIS_COMMIT .
