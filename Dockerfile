@@ -29,4 +29,4 @@ RUN rm /chrome.deb
 RUN LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE` && echo $LATEST && curl https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o /app/chromedriver.zip
 RUN apt-get install unzip -y && unzip ./chromedriver.zip
 COPY . .
-ENTRYPOINT ["./entrypoint_test.sh"]
+ENTRYPOINT [ "poetry", "run", "pytest" ]
