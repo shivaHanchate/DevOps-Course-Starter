@@ -12,12 +12,12 @@ ENV PYTHONPATH=/app
 RUN poetry add gunicorn
 ENV PORT=8000
 EXPOSE $PORT
-ENTRYPOINT "poetry run gunicorn -w 4 -b 0.0.0.0:$PORT todo_app.app:app"
+ENTRYPOINT ["./entrypoint_prod.sh"]
 
 FROM base as development
 ENV FLASK_APP todo_app/app.py
 ENV FLASK_ENV development
-ENTRYPOINT ["poetry","run","flask","run","--host=0.0.0.0"]
+ENTRYPOINT ["./entrypoint_dev.sh"]
 
 FROM base as test
 ENV FLASK_APP todo_app/app.py
@@ -29,4 +29,4 @@ RUN rm /chrome.deb
 RUN LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE` && echo $LATEST && curl https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o /app/chromedriver.zip
 RUN apt-get install unzip -y && unzip ./chromedriver.zip
 COPY . .
-ENTRYPOINT ["poetry","run","pytest"]
+ENTRYPOINT ["./entrypoint_test.sh"]
