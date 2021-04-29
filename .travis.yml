@@ -32,7 +32,7 @@ deploy:
   provider: script
   script: heroku container:release web --app $HEROKU_APP
   on:
-    branch: Module-8
+    branch: master
     
 notifications:
   slack: 
