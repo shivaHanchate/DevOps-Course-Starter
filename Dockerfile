@@ -13,12 +13,12 @@ RUN poetry add gunicorn
 ENV PORT=8000
 EXPOSE $PORT
 
-ENTRYPOINT ./entrypoint_prod.sh
+ENTRYPOINT ["./entrypoint_prod.sh"]
 
 FROM base as development
 ENV FLASK_APP todo_app/app.py
 ENV FLASK_ENV development
-ENTRYPOINT ./entrypoint_dev.sh
+ENTRYPOINT ["./entrypoint_dev.sh"]
 
 FROM base as test
 ENV FLASK_APP todo_app/app.py
