@@ -5,28 +5,18 @@ from selenium import webdriver
 from threading import Thread
 from todo_app.app import create_app
 from dotenv import find_dotenv, load_dotenv
-import requests
+import pymongo
+import random
+import string
 
 
-def create_trello_board():
-    endpoint = f"https://api.trello.com/1/boards"
-    response = requests.post(endpoint, params={"name": "TestApp","key": os.getenv('api_key'), "token": os.getenv('token')}).json()        
-    return response['id'] 
-
-def create_trello_lists():
-    endpoint = f"https://api.trello.com/1/lists"
-    response = requests.post(endpoint, params={"name": "ToDo","idBoard":  os.environ['board_id'], "key": os.getenv('api_key'), "token": os.getenv('token')}).json()        
-    os.environ['todo_list_id'] = response['id'] 
-    response = requests.post(endpoint, params={"name": "Doing","idBoard":  os.environ['board_id'], "key": os.getenv('api_key'), "token": os.getenv('token')}).json()        
-    os.environ['doing_list_id'] = response['id'] 
-    response = requests.post(endpoint, params={"name": "Done","idBoard":  os.environ['board_id'], "key": os.getenv('api_key'), "token": os.getenv('token')}).json()        
-    os.environ['done_list_id'] = response['id'] 
-
-
-def delete_trello_board(board_id):
-    endpoint = f"https://api.trello.com/1/boards/{board_id}"
-    response = requests.delete(endpoint, params={"key": os.getenv('api_key'), "token": os.getenv('token')}).json()       
-    return response
+def get_mongo_db_collection():
+        dbClientUri = f"mongodb+srv://{os.getenv('user_name')}:{os.getenv('password')}@{os.getenv('mongo_url')}/{os.getenv('database_name')}?retryWrites=true&w=majority"
+        mongo_db_name = os.getenv('database_name')
+        collection_name = os.getenv('collection_name')
+        dBClient = pymongo.MongoClient(dbClientUri)
+        db = dBClient[mongo_db_name]
+        return db[collection_name]
 
 
 @pytest.fixture(scope='module')
@@ -34,9 +24,10 @@ def test_app():
     file_path = find_dotenv('.env')
     load_dotenv(file_path, override=True)
 # Create the new board & update the board id environment variable
-    board_id = create_trello_board()
-    os.environ['board_id'] = board_id 
-    create_trello_lists()   
+    os.environ['database_name'] = 'test-' + \
+        ''.join(random.choice(string.ascii_uppercase + string.digits)
+                for _ in range(10))
+    collection = get_mongo_db_collection() 
     # construct the new application
     application = create_app()
     # start the app in its own thread.
@@ -46,8 +37,7 @@ def test_app():
     yield application
     # Tear Down
     thread.join(1)
-    delete_trello_board(board_id)  
-
+    collection.drop()  
 
 @pytest.fixture(scope="module")
 def driver():
