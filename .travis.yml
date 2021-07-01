@@ -18,8 +18,8 @@ script:
 - docker run my-test-image ./todo_app/test/test_app.py
 - >
     docker run
-    -e api_key
-    -e token
+    -e MONGODB_USER_NAME=$MONGODB_USER_NAME
+    -e MONGODB_PASSWORD=$MONGODB_PASSWORD
     my-test-image ./todo_app/test/test_trello_app.py
 
 before_deploy:
@@ -32,7 +32,7 @@ deploy:
   provider: script
   script: heroku container:release web --app $HEROKU_APP
   on:
-    branch: master
+    branch: Module-9
     
 notifications:
   slack: 
