@@ -1,8 +1,6 @@
 import pytest
 from dotenv import find_dotenv, load_dotenv
 from unittest.mock import patch, Mock
-import os
-from todo_app.mongo_db import MongoDb
 from todo_app.app import create_app
 from todo_app.card import Card
 
