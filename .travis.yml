@@ -15,12 +15,12 @@ before_install:
 script:
 - docker build --target test --tag my-test-image .
 - docker run my-test-image ./todo_app/test/test_view_model.py
-- docker run my-test-image ./todo_app/test/test_app.py
+- docker run my-test-image ./todo_app/test/test_integration.py
 - >
     docker run
     -e MONGODB_USER_NAME=$MONGODB_USER_NAME
     -e MONGODB_PASSWORD=$MONGODB_PASSWORD
-    my-test-image ./todo_app/test/test_trello_app.py
+    my-test-image ./todo_app/test/test_e2e.py
 
 before_deploy:
   - docker build --target production --tag $DOCKER_USERNAME/todo-app:$TRAVIS_COMMIT .
