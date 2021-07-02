@@ -15,7 +15,6 @@ before_install:
 script:
 - docker build --target test --tag my-test-image .
 - docker run my-test-image ./todo_app/test/test_view_model.py
-- docker run my-test-image ./todo_app/test/test_integration.py
 - >
     docker run
     -e user_name=$MONGODB_USER_NAME
@@ -23,7 +22,8 @@ script:
     -e mongo_url=$MONGO_URL
     -e database_name=$DATABASE_NAME
     -e collection_name=$COLLECTION_NAME
-    my-test-image ./todo_app/test/test_e2e.py
+
+    my-test-image ./todo_app/test/test_integration.py && my-test-image ./todo_app/test/test_e2e.py 
 
 before_deploy:
   - docker build --target production --tag $DOCKER_USERNAME/todo-app:$TRAVIS_COMMIT .
