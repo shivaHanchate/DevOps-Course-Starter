@@ -1,8 +1,8 @@
 FROM python:3.8-slim-buster as base
 
 WORKDIR /app
-COPY poetry.lock pyproject.toml /app/
-RUN apt-get update && apt-get install -y curl && pip install poetry 
+COPY pyproject.toml poetry.lock /app/
+RUN apt-get update && apt-get install -y curl && pip install poetry
 RUN poetry config virtualenvs.create false --local && poetry install --no-root
 EXPOSE 5000
 
