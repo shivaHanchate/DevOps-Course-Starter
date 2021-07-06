@@ -1,6 +1,6 @@
 
 class Card:
-    def __init__(self, id, name, status, mod_date):
+    def __init__(self, id, status, name, mod_date):
         self.id = id
         self.status = status
         self.card_name = name

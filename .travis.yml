@@ -3,9 +3,7 @@ service:
 
 env:
   global:
-  - secure: "p0VzwfInI3U0O7+5Sy7kDRjS1F9B/w1avmzRpuIdHwSSZBMc18RsFwhlBqNed/gliw99QEdlyHkieh4KkTdyh+2H87ngrZFMIG2WBHhcq/EcJIv3jX1/AKDKyMo2t+F/SRtrs0nhWmntGw3zO4xFAk1S2ZW3Iotq2eyaYDSCE6fBurgZSWtd+YIl9qBnU7the5w1VWhl0MSr4E3+nGUG/DtgDa6TOKgJICXqkNPUWAIKNK/epZMhxxqcRWIFEUCMXHdJ1XV4hIByE5adEGkXCrqFIllbrbr8VM7tJfXvdH2TpQlrnKXoX/QfHfqkgrq8/pP/FOkapUNdCCHvbV3VCnQ9d13riMy0l6MXTL+BLreiKwItYRjkwrQva/OWSvBMz4T1J+r9Wby7gi6x8BvVuymhqT4N3BFey6sNmEyHyZbzhupCt6Zt+aLsD8+DCWLABa1v4J00btXQ21s/rFGLQLGsGpfb10fgXHMzDWbus83o5MhXWQLFWKaW3UuRbbG9b+m2zom/Pxgwo+fOL6r0e8bR3HPh8fkmwwOftd5L7ee0csK9d7wiYVOmG2uiF22Mq2LVAeTHRWfrhoTB3BPEJ2E0MniVDht6I9Sa5UnIiyBdOZ+vJ7OpccWMYVI0GabZIBGMVz4bzfMZFJYlrojuxybQ5gB9vgihPrHKw07weKE="
-  - secure: "iwA25aSfU9uRNhmmMFUajaAUqzDmtN56eLX1bq5k5MTGoBAv2I0R1zUENpN8dCCWGMUInJRyn2PXHRdDA2lKlxl0W0osJBY8Hrcjm5OjQ4YTFE9wdwxORfJKHD9P0AfB5tU104N8AJrr3taq9A22O/pGbCjXPl+79/pGiqS9kPA0YZh/Vua+/tfGSjdOWoy5hQJtRJThN77dUJoJpWR3iVL6AJn6IElAzu2EzSRJz/9rJHTmsfq34alLVNysdVDY5NkMCDkZTTAxzrNTwePXKnbHeFELoHbnaB9vznCT4kzJ9yScTGXlzmy9b2bRJ/5756ZxN4EJ/Ltyl4qxHR8kAY9kOFZgG4MY6aTsWYHW6vRxJ8ZlIHCzEYVgP9mx2cZi+Go8ZcyQN1OkCpTR+1y9Lwwns454tS0A5fx/boyECBSpej9M+JF6yRrLdwE8BGhtANvU9c+N/ZDQofuAI332uAZVp8/rDSQ8c8IpU1banu0R6QmuWvKxPdpOvaaHcZCnzXkI4e5eY7cM0P0LmLGJwzX01ndL3nXUmGo+kW9GVghIVCgJXJ1+wHuge9iVCrCfqJkrtCrAPOwz9FL8h5UTJq2fTc+LQmiCAWXYJd3Fuu3lPN1z6ZB9nemNGa61IAYksF/VThqp/ZUzXR6rruggDd8Tk/36u81YCDeiEysDp/Q="
-  - secure: "Qbb8tOj9Qc1nkHqxQ5yheZGC25QSQ71SPCvvdVRFd06nE8s7uythABCzAfzIwDe8hAzW/DGOTNvHuL5Qgl3zWB0mKacjm11dY4c6OcaLB7O1Kn91YsGNoUaXqjain/lzWKqWTO7lCdbVk4pZ6BNKaUx9NI1G+vBDH+F70ayrc5mq/UIAfqC7u8aEUEvTSM642n2hovZJnYDVkLGLHjtJNMhPTYWf5vq+fzbcQrlRYbWc0AnhtHO3ScI99V1kf4NSBkTMB4Z7j6hj3vKhfLbsrlynbkNIyHjz4WrSAy0yT/YRShwxRD/WWx7IyciIrYkIW8VmXQQ3dcSuz1toE3wU0ekxgnuYDUcuKZxn307rlz4TbOC/cJoNhZV6TiHxXPlv+aTutr/sQpP09a7CFa4syKlm/143rvG9fux/m5CagpVKcXnP2xyKOnOy0pbjOx4p9R/87kTazxwNVti6pB53DkauHlBy5GSu++QQ1t3zgmlN/wb/l1qumYuwg+gz8XX1VbaZDlYJ9xn5hxwgrjsEkJUm5KUg433kSnawMoiwJqHgpEW5/LmdUb9KCaadbJWRZbbNc+wXCE3xXYPqEowFUocjMUz/2DLBYyQ4hlsQQdiQrHGksQeIWzLP3Oj4Ru61Ky1mkZl/vAf1RsXTIe7nerCJPzM4sOjqqrlQGTkkfRs="
+   - secure: "Qbb8tOj9Qc1nkHqxQ5yheZGC25QSQ71SPCvvdVRFd06nE8s7uythABCzAfzIwDe8hAzW/DGOTNvHuL5Qgl3zWB0mKacjm11dY4c6OcaLB7O1Kn91YsGNoUaXqjain/lzWKqWTO7lCdbVk4pZ6BNKaUx9NI1G+vBDH+F70ayrc5mq/UIAfqC7u8aEUEvTSM642n2hovZJnYDVkLGLHjtJNMhPTYWf5vq+fzbcQrlRYbWc0AnhtHO3ScI99V1kf4NSBkTMB4Z7j6hj3vKhfLbsrlynbkNIyHjz4WrSAy0yT/YRShwxRD/WWx7IyciIrYkIW8VmXQQ3dcSuz1toE3wU0ekxgnuYDUcuKZxn307rlz4TbOC/cJoNhZV6TiHxXPlv+aTutr/sQpP09a7CFa4syKlm/143rvG9fux/m5CagpVKcXnP2xyKOnOy0pbjOx4p9R/87kTazxwNVti6pB53DkauHlBy5GSu++QQ1t3zgmlN/wb/l1qumYuwg+gz8XX1VbaZDlYJ9xn5hxwgrjsEkJUm5KUg433kSnawMoiwJqHgpEW5/LmdUb9KCaadbJWRZbbNc+wXCE3xXYPqEowFUocjMUz/2DLBYyQ4hlsQQdiQrHGksQeIWzLP3Oj4Ru61Ky1mkZl/vAf1RsXTIe7nerCJPzM4sOjqqrlQGTkkfRs="
   
 before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # command to login to docker hub 
@@ -15,12 +13,22 @@ before_install:
 script:
 - docker build --target test --tag my-test-image .
 - docker run my-test-image ./todo_app/test/test_view_model.py
-- docker run my-test-image ./todo_app/test/test_app.py
+- > 
+    docker run 
+    -e user_name=$MONGODB_USER_NAME
+    -e password=$MONGODB_PASSWORD
+    -e mongo_url=$MONGO_URL
+    -e database_name=$DATABASE_NAME
+    -e collection_name=$COLLECTION_NAME
+    my-test-image ./todo_app/test/test_integration.py
 - >
     docker run
-    -e api_key
-    -e token
-    my-test-image ./todo_app/test/test_trello_app.py
+    -e user_name=$MONGODB_USER_NAME
+    -e password=$MONGODB_PASSWORD
+    -e mongo_url=$MONGO_URL
+    -e database_name=$DATABASE_NAME
+    -e collection_name=$COLLECTION_NAME    
+    my-test-image ./todo_app/test/test_e2e.py
 
 before_deploy:
   - docker build --target production --tag $DOCKER_USERNAME/todo-app:$TRAVIS_COMMIT .
@@ -32,7 +40,7 @@ deploy:
   provider: script
   script: heroku container:release web --app $HEROKU_APP
   on:
-    branch: master
+    branch: Module-9
     
 notifications:
   slack: 

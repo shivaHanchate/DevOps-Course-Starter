@@ -32,7 +32,7 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like developement mode (which also enables features like hot reloading when you make a file change).
 
-Please add API key, token, board_id, todo_list_id, doing_list_id and done_list_id variables to .env to match your Trello details.
+Please add user_name, password, mongo_url, database_name and collection_name variables to .env to match your Mongo DB details.
 
 ## Running the App using poetry
 
@@ -241,3 +241,14 @@ $ travis encrypt --pro "YOUR_SLACK_INTEGRATION_KEY"
 ```bash
 $ gem install travis
 ```
+
+# Travis CI, Docker Hub & Heroku
+This app required an account at Travis CI, Docker Hub & heroku to run a CI/CD pipeline to deploy to https://todo-app-shivahanchate.herokuapp.com/
+
+# Travis CI
+Add env variable in Travis-ci: DOCKER_USERNAME, DOCKER_PASSWORD, HEROKU_APP, HEROKU_LOGIN, HEROKU_USERNAME, MONGODB_USER_NAME, MONGODB_PASSWORD, MONGO_URL, DATABASE_NAME and COLLECTION_NAME    
+
+# Heroku
+
+Add env variable in Heroku: MONGODB_USER_NAME, MONGODB_PASSWORD, MONGO_URL, DATABASE_NAME and COLLECTION_NAME 
+
